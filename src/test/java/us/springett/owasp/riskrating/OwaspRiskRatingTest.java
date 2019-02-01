@@ -27,22 +27,22 @@ public class OwaspRiskRatingTest {
     @Test
     public void calculationTest() throws Exception {
         OwaspRiskRating riskRating = new OwaspRiskRating()
-                .withSkillLevel(ThreatAgentFactor.SkillLevel.ADVANCED_COMPUTER_USER)
-                .withMotive(ThreatAgentFactor.Motive.POSSIBLE_REWARD)
-                .withOpportunity(ThreatAgentFactor.Opportunity.SOME_ACCESS_OR_RESOURCES_REQUIRED)
-                .withSize(ThreatAgentFactor.Size.AUTHENTICATED_USERS)
-                .withEaseOfDiscovery(VulnerabilityFactor.EaseOfDiscovery.DIFFICULT)
-                .withEaseOfExploit(VulnerabilityFactor.EaseOfExploit.THEORETICAL)
-                .withAwareness(VulnerabilityFactor.Awareness.HIDDEN)
-                .withIntrusionDetection(VulnerabilityFactor.IntrusionDetection.NOT_LOGGED)
-                .withLossOfConfidentiality(TechnicalImpactFactor.LossOfConfidentiality.ALL_DATA_DISCLOSED)
-                .withLossOfIntegrity(TechnicalImpactFactor.LossOfIntegrity.EXTENSIVE_SERIOUSLY_CORRUPT_DATA)
-                .withLossOfAvailability(TechnicalImpactFactor.LossOfAvailability.MINIMAL_SECONDARY_SERVICES_INTERRUPTED)
-                .withLossOfAccountability(TechnicalImpactFactor.LossOfAccountability.COMPLETELY_ANONYMOUS)
-                .withFinancialDamage(BusinessImpactFactor.FinancialDamage.SIGNIFICANT_EFFECT_ON_ANNUAL_PROFIT)
-                .withReputationDamage(BusinessImpactFactor.ReputationDamage.LOSS_OF_MAJOR_ACCOUNTS)
-                .withNonCompliance(BusinessImpactFactor.NonCompliance.HIGH_PROFILE_VIOLATION)
-                .withPrivacyViolation(BusinessImpactFactor.PrivacyViolation.MILLIONS_OF_PEOPLE);
+                .with(ThreatAgentFactor.SkillLevel.ADVANCED_COMPUTER_USER)
+                .with(ThreatAgentFactor.Motive.POSSIBLE_REWARD)
+                .with(ThreatAgentFactor.Opportunity.SOME_ACCESS_OR_RESOURCES_REQUIRED)
+                .with(ThreatAgentFactor.Size.AUTHENTICATED_USERS)
+                .with(VulnerabilityFactor.EaseOfDiscovery.DIFFICULT)
+                .with(VulnerabilityFactor.EaseOfExploit.THEORETICAL)
+                .with(VulnerabilityFactor.Awareness.HIDDEN)
+                .with(VulnerabilityFactor.IntrusionDetection.NOT_LOGGED)
+                .with(TechnicalImpactFactor.LossOfConfidentiality.ALL_DATA_DISCLOSED)
+                .with(TechnicalImpactFactor.LossOfIntegrity.EXTENSIVE_SERIOUSLY_CORRUPT_DATA)
+                .with(TechnicalImpactFactor.LossOfAvailability.MINIMAL_SECONDARY_SERVICES_INTERRUPTED)
+                .with(TechnicalImpactFactor.LossOfAccountability.COMPLETELY_ANONYMOUS)
+                .with(BusinessImpactFactor.FinancialDamage.SIGNIFICANT_EFFECT_ON_ANNUAL_PROFIT)
+                .with(BusinessImpactFactor.ReputationDamage.LOSS_OF_MAJOR_ACCOUNTS)
+                .with(BusinessImpactFactor.NonCompliance.HIGH_PROFILE_VIOLATION)
+                .with(BusinessImpactFactor.PrivacyViolation.MILLIONS_OF_PEOPLE);
         Score score = riskRating.calculateScore();
         Level likelihood = score.getLikelihood();
         Level technicalImpact = score.getTechnicalImpact();
