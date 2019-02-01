@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/stevespringett/owasp-risk-rating-calculator.svg?branch=master)](https://travis-ci.org/stevespringett/owasp-risk-rating-calculator)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cb8fdf4b23df4ac993cadbbeb14c743c)](https://www.codacy.com/app/stevespringett/owasp-risk-rating-calculator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=stevespringett/owasp-risk-rating-calculator&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fe80f59eee334016b218178bc72e6395)](https://www.codacy.com/app/stevespringett/owasp-risk-rating-calculator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=stevespringett/owasp-risk-rating-calculator&amp;utm_campaign=Badge_Grade)
 [![License](https://img.shields.io/badge/license-Apache%202.0-brightgreen.svg)][Apache 2.0]
 
 OWASP Risk Rating Calculator
