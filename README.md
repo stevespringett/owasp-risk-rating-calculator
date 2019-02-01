@@ -5,7 +5,7 @@
 OWASP Risk Rating Calculator
 =====================================
 
-OWASP Risk Rating Calculator is a Java library for calculating OWASP Risk Rating scores.
+OWASP Risk Rating Calculator is a Java library for programmatically calculating OWASP Risk Rating scores.
 
 Compiling
 -------------------
