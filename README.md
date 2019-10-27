@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/stevespringett/owasp-risk-rating-calculator.svg?branch=master)](https://travis-ci.org/stevespringett/owasp-risk-rating-calculator)
+[![Build Status](https://github.com/stevespringett/owasp-risk-rating-calculator/workflows/Maven%20CI/badge.svg)](https://github.com/stevespringett/owasp-risk-rating-calculator/actions?workflow=Maven+CI)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/fe80f59eee334016b218178bc72e6395)](https://www.codacy.com/app/stevespringett/owasp-risk-rating-calculator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=stevespringett/owasp-risk-rating-calculator&amp;utm_campaign=Badge_Grade)
 [![License](https://img.shields.io/badge/license-Apache%202.0-brightgreen.svg)][Apache 2.0]
 
