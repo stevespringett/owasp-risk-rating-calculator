@@ -20,12 +20,20 @@ import us.springett.owasp.riskrating.factors.TechnicalImpactFactor;
 import us.springett.owasp.riskrating.factors.ThreatAgentFactor;
 import us.springett.owasp.riskrating.factors.VulnerabilityFactor;
 
+import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * @author Steve Springett
  * @since 1.0.0
  */
 @SuppressWarnings("unused")
 public class OwaspRiskRating {
+
+    public static final String VECTOR_PATTERN = "SL:\\d/M:\\d/O:\\d/S:\\d/ED:\\d/EE:\\d/A:\\d/ID:\\d/LC:\\d/LI:\\d/LAV:\\d/LAC:\\d/FD:\\d/RD:\\d/NC:\\d/PV:\\d";
+
+    public static final Pattern OWASP_RR_VECTOR_PATTERN = Pattern.compile(VECTOR_PATTERN);
 
     private ThreatAgentFactor.SkillLevel skillLevel;
     private ThreatAgentFactor.Motive motive;
@@ -66,6 +74,36 @@ public class OwaspRiskRating {
         double businessImpact = (financialDamage.getLikelihood() + reputationDamage.getLikelihood()
                 + nonCompliance.getLikelihood() + privacyViolation.getLikelihood()) / 4;
         return new Score(likelihood, technicalImpact, businessImpact);
+    }
+
+    public static OwaspRiskRating fromVector(String vector) {
+        if (vector == null) {
+            throw new IllegalArgumentException("Null vector provided");
+        }
+        Matcher vectorMatcher = OWASP_RR_VECTOR_PATTERN.matcher(vector);
+        if (vectorMatcher.matches()) {
+            String matchedVector = vectorMatcher.group();
+            StringTokenizer st = new StringTokenizer(matchedVector, "/");
+            OwaspRiskRating result = new OwaspRiskRating();
+            result.with(ThreatAgentFactor.SkillLevel.fromString(st.nextElement().toString().split(":")[1]));
+            result.with(ThreatAgentFactor.Motive.fromString(st.nextElement().toString().split(":")[1]));
+            result.with(ThreatAgentFactor.Opportunity.fromString(st.nextElement().toString().split(":")[1]));
+            result.with(ThreatAgentFactor.Size.fromString(st.nextElement().toString().split(":")[1]));
+            result.with(VulnerabilityFactor.EaseOfDiscovery.fromString(st.nextElement().toString().split(":")[1]));
+            result.with(VulnerabilityFactor.EaseOfExploit.fromString(st.nextElement().toString().split(":")[1]));
+            result.with(VulnerabilityFactor.Awareness.fromString(st.nextElement().toString().split(":")[1]));
+            result.with(VulnerabilityFactor.IntrusionDetection.fromString(st.nextElement().toString().split(":")[1]));
+            result.with(TechnicalImpactFactor.LossOfConfidentiality.fromString(st.nextElement().toString().split(":")[1]));
+            result.with(TechnicalImpactFactor.LossOfIntegrity.fromString(st.nextElement().toString().split(":")[1]));
+            result.with(TechnicalImpactFactor.LossOfAvailability.fromString(st.nextElement().toString().split(":")[1]));
+            result.with(TechnicalImpactFactor.LossOfAccountability.fromString(st.nextElement().toString().split(":")[1]));
+            result.with(BusinessImpactFactor.FinancialDamage.fromString(st.nextElement().toString().split(":")[1]));
+            result.with(BusinessImpactFactor.ReputationDamage.fromString(st.nextElement().toString().split(":")[1]));
+            result.with(BusinessImpactFactor.NonCompliance.fromString(st.nextElement().toString().split(":")[1]));
+            result.with(BusinessImpactFactor.PrivacyViolation.fromString(st.nextElement().toString().split(":")[1]));
+            return result;
+        }
+        throw new IllegalArgumentException("Provided vector "+vector+" does not match OWASP RR Vector pattern "+VECTOR_PATTERN);
     }
 
     public OwaspRiskRating with(final ThreatAgentFactor.SkillLevel skillLevel) {
@@ -146,5 +184,69 @@ public class OwaspRiskRating {
     public OwaspRiskRating with(final BusinessImpactFactor.PrivacyViolation privacyViolation) {
         this.privacyViolation = privacyViolation;
         return this;
+    }
+
+    public ThreatAgentFactor.SkillLevel getSkillLevel() {
+        return skillLevel;
+    }
+
+    public ThreatAgentFactor.Motive getMotive() {
+        return motive;
+    }
+
+    public ThreatAgentFactor.Opportunity getOpportunity() {
+        return opportunity;
+    }
+
+    public ThreatAgentFactor.Size getSize() {
+        return size;
+    }
+
+    public VulnerabilityFactor.EaseOfDiscovery getEaseOfDiscovery() {
+        return easeOfDiscovery;
+    }
+
+    public VulnerabilityFactor.EaseOfExploit getEaseOfExploit() {
+        return easeOfExploit;
+    }
+
+    public VulnerabilityFactor.Awareness getAwareness() {
+        return awareness;
+    }
+
+    public VulnerabilityFactor.IntrusionDetection getIntrusionDetection() {
+        return intrusionDetection;
+    }
+
+    public TechnicalImpactFactor.LossOfConfidentiality getLossOfConfidentiality() {
+        return lossOfConfidentiality;
+    }
+
+    public TechnicalImpactFactor.LossOfIntegrity getLossOfIntegrity() {
+        return lossOfIntegrity;
+    }
+
+    public TechnicalImpactFactor.LossOfAvailability getLossOfAvailability() {
+        return lossOfAvailability;
+    }
+
+    public TechnicalImpactFactor.LossOfAccountability getLossOfAccountability() {
+        return lossOfAccountability;
+    }
+
+    public BusinessImpactFactor.FinancialDamage getFinancialDamage() {
+        return financialDamage;
+    }
+
+    public BusinessImpactFactor.ReputationDamage getReputationDamage() {
+        return reputationDamage;
+    }
+
+    public BusinessImpactFactor.NonCompliance getNonCompliance() {
+        return nonCompliance;
+    }
+
+    public BusinessImpactFactor.PrivacyViolation getPrivacyViolation() {
+        return privacyViolation;
     }
 }

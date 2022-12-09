@@ -55,6 +55,19 @@ public class BusinessImpactFactor {
         FinancialDamage(double likelihood) {
             this.likelihood = likelihood;
         }
+
+        public static FinancialDamage fromDouble(double level) {
+            for (FinancialDamage financialDamage : values()) {
+                if (financialDamage.likelihood == level) {
+                    return financialDamage;
+                }
+            }
+            return null;
+        }
+
+        public static FinancialDamage fromString(String level) {
+            return fromDouble(Double.valueOf(level));
+        }
     }
 
     /**
@@ -74,6 +87,19 @@ public class BusinessImpactFactor {
         ReputationDamage(double likelihood) {
             this.likelihood = likelihood;
         }
+
+        public static ReputationDamage fromDouble(double level) {
+            for (ReputationDamage reputationDamage : values()) {
+                if (reputationDamage.likelihood == level) {
+                    return reputationDamage;
+                }
+            }
+            return null;
+        }
+
+        public static ReputationDamage fromString(String level) {
+            return fromDouble(Double.valueOf(level));
+        }
     }
 
     /**
@@ -91,6 +117,19 @@ public class BusinessImpactFactor {
         }
         NonCompliance(double likelihood) {
             this.likelihood = likelihood;
+        }
+
+        public static NonCompliance fromDouble(double level) {
+            for (NonCompliance nonCompliance : values()) {
+                if (nonCompliance.likelihood == level) {
+                    return nonCompliance;
+                }
+            }
+            return null;
+        }
+
+        public static NonCompliance fromString(String level) {
+            return fromDouble(Double.valueOf(level));
         }
     }
 
@@ -110,6 +149,19 @@ public class BusinessImpactFactor {
         }
         PrivacyViolation(double likelihood) {
             this.likelihood = likelihood;
+        }
+
+        public static PrivacyViolation fromDouble(double level) {
+            for (PrivacyViolation privacyViolation : values()) {
+                if (privacyViolation.likelihood == level) {
+                    return privacyViolation;
+                }
+            }
+            return null;
+        }
+
+        public static PrivacyViolation fromString(String level) {
+            return fromDouble(Double.valueOf(level));
         }
     }
 }
