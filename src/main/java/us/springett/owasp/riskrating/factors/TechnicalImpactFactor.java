@@ -47,6 +47,19 @@ public class TechnicalImpactFactor {
         LossOfConfidentiality(double likelihood) {
             this.likelihood = likelihood;
         }
+
+        public static LossOfConfidentiality fromDouble(double level) {
+            for (LossOfConfidentiality lossOfConfidentiality : values()) {
+                if (lossOfConfidentiality.likelihood == level) {
+                    return lossOfConfidentiality;
+                }
+            }
+            return null;
+        }
+
+        public static LossOfConfidentiality fromString(String level) {
+            return fromDouble(Double.valueOf(level));
+        }
     }
 
     /**
@@ -66,6 +79,19 @@ public class TechnicalImpactFactor {
         }
         LossOfIntegrity(double likelihood) {
             this.likelihood = likelihood;
+        }
+
+        public static LossOfIntegrity fromDouble(double level) {
+            for (LossOfIntegrity lossOfIntegrity : values()) {
+                if (lossOfIntegrity.likelihood == level) {
+                    return lossOfIntegrity;
+                }
+            }
+            return null;
+        }
+
+        public static LossOfIntegrity fromString(String level) {
+            return fromDouble(Double.valueOf(level));
         }
     }
 
@@ -87,6 +113,19 @@ public class TechnicalImpactFactor {
         LossOfAvailability(double likelihood) {
             this.likelihood = likelihood;
         }
+
+        public static LossOfAvailability fromDouble(double level) {
+            for (LossOfAvailability lossOfAvailability : values()) {
+                if (lossOfAvailability.likelihood == level) {
+                    return lossOfAvailability;
+                }
+            }
+            return null;
+        }
+
+        public static LossOfAvailability fromString(String level) {
+            return fromDouble(Double.valueOf(level));
+        }
     }
 
     /**
@@ -104,6 +143,19 @@ public class TechnicalImpactFactor {
         }
         LossOfAccountability(double likelihood) {
             this.likelihood = likelihood;
+        }
+
+        public static LossOfAccountability fromDouble(double level) {
+            for (LossOfAccountability lossOfAccountability : values()) {
+                if (lossOfAccountability.likelihood == level) {
+                    return lossOfAccountability;
+                }
+            }
+            return null;
+        }
+
+        public static LossOfAccountability fromString(String level) {
+            return fromDouble(Double.valueOf(level));
         }
     }
 }

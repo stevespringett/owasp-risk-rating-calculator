@@ -46,6 +46,19 @@ public class ThreatAgentFactor {
         SkillLevel(double likelihood) {
             this.likelihood = likelihood;
         }
+
+        public static SkillLevel fromDouble(double level) {
+            for (SkillLevel skillLevel : values()) {
+                if (skillLevel.likelihood == level) {
+                    return skillLevel;
+                }
+            }
+            return null;
+        }
+
+        public static SkillLevel fromString(String level) {
+            return fromDouble(Double.valueOf(level));
+        }
     }
 
     /**
@@ -63,6 +76,19 @@ public class ThreatAgentFactor {
         }
         Motive(double likelihood) {
             this.likelihood = likelihood;
+        }
+
+        public static Motive fromDouble(double level) {
+            for (Motive motive : values()) {
+                if (motive.likelihood == level) {
+                    return motive;
+                }
+            }
+            return null;
+        }
+
+        public static Motive fromString(String level) {
+            return fromDouble(Double.valueOf(level));
         }
     }
 
@@ -82,6 +108,19 @@ public class ThreatAgentFactor {
         }
         Opportunity(double likelihood) {
             this.likelihood = likelihood;
+        }
+
+        public static Opportunity fromDouble(double level) {
+            for (Opportunity opportunity : values()) {
+                if (opportunity.likelihood == level) {
+                    return opportunity;
+                }
+            }
+            return null;
+        }
+
+        public static Opportunity fromString(String level) {
+            return fromDouble(Double.valueOf(level));
         }
     }
 
@@ -103,6 +142,19 @@ public class ThreatAgentFactor {
         }
         Size(double likelihood) {
             this.likelihood = likelihood;
+        }
+
+        public static Size fromDouble(double level) {
+            for (Size size : values()) {
+                if (size.likelihood == level) {
+                    return size;
+                }
+            }
+            return null;
+        }
+
+        public static Size fromString(String level) {
+            return fromDouble(Double.valueOf(level));
         }
     }
 }

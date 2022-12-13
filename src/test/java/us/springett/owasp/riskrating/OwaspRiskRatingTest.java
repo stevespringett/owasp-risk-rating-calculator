@@ -44,9 +44,6 @@ public class OwaspRiskRatingTest {
                 .with(BusinessImpactFactor.NonCompliance.HIGH_PROFILE_VIOLATION)
                 .with(BusinessImpactFactor.PrivacyViolation.MILLIONS_OF_PEOPLE);
         Score score = riskRating.calculateScore();
-        Level likelihood = score.getLikelihood();
-        Level technicalImpact = score.getTechnicalImpact();
-        Level businessImact = score.getBusinessImpact();
 
         Assert.assertEquals(4.875, score.getLikelihoodScore(), 0);
         Assert.assertEquals(6.5, score.getTechnicalImpactScore(), 0);
@@ -56,4 +53,39 @@ public class OwaspRiskRatingTest {
         Assert.assertEquals(Level.HIGH, score.getTechnicalImpact());
         Assert.assertEquals(Level.HIGH, score.getBusinessImpact());
     }
+
+    @Test
+    public void vectorParseNominalTest() throws MissingFactorException {
+        String vector = "SL:1/M:1/O:0/S:2/ED:1/EE:1/A:1/ID:1/LC:2/LI:1/LAV:1/LAC:1/FD:1/RD:1/NC:2/PV:3";
+
+        OwaspRiskRating rr = OwaspRiskRating.fromVector(vector);
+        Score score = rr.calculateScore();
+
+        Assert.assertEquals(ThreatAgentFactor.SkillLevel.NO_TECHNICAL_SKILLS, rr.getSkillLevel());
+        Assert.assertEquals(ThreatAgentFactor.Motive.LOW_OR_NO_REWARD, rr.getMotive());
+        Assert.assertEquals(ThreatAgentFactor.Opportunity.FULL_ACCESS_OR_EXPENSIVE_RESOURCES_REQUIRED, rr.getOpportunity());
+        Assert.assertEquals(ThreatAgentFactor.Size.DEVELOPERS, rr.getSize());
+        Assert.assertEquals(VulnerabilityFactor.EaseOfDiscovery.PRACTICALLY_IMPOSSIBLE, rr.getEaseOfDiscovery());
+        Assert.assertEquals(VulnerabilityFactor.EaseOfExploit.THEORETICAL, rr.getEaseOfExploit());
+        Assert.assertEquals(VulnerabilityFactor.Awareness.UNKNOWN, rr.getAwareness());
+        Assert.assertEquals(VulnerabilityFactor.IntrusionDetection.ACTIVE_DETECTION_IN_APPLICATION, rr.getIntrusionDetection());
+        Assert.assertEquals(TechnicalImpactFactor.LossOfConfidentiality.MINIMAL_NON_SENSITIVE_DATA_DISCLOSED, rr.getLossOfConfidentiality());
+        Assert.assertEquals(TechnicalImpactFactor.LossOfIntegrity.MINIMAL_SLIGHTLY_CORRUPT_DATA, rr.getLossOfIntegrity());
+        Assert.assertEquals(TechnicalImpactFactor.LossOfAvailability.MINIMAL_SECONDARY_SERVICES_INTERRUPTED, rr.getLossOfAvailability());
+        Assert.assertEquals(TechnicalImpactFactor.LossOfAccountability.FULLY_TRACEABLE, rr.getLossOfAccountability());
+        Assert.assertEquals(BusinessImpactFactor.FinancialDamage.LESS_THAN_THE_COST_TO_FIX_THE_VULNERABILITY, rr.getFinancialDamage());
+        Assert.assertEquals(BusinessImpactFactor.ReputationDamage.MINIMAL_DAMAGE, rr.getReputationDamage());
+        Assert.assertEquals(BusinessImpactFactor.NonCompliance.MINOR_VIOLATION, rr.getNonCompliance());
+        Assert.assertEquals(BusinessImpactFactor.PrivacyViolation.ONE_INDIVIDUAL, rr.getPrivacyViolation());
+
+        Assert.assertEquals(1.0, score.getLikelihoodScore(),0);
+        Assert.assertEquals(1.25, score.getTechnicalImpactScore(),0);
+        Assert.assertEquals(1.75, score.getBusinessImpactScore(),0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void vectorParseErrorTest() {
+        OwaspRiskRating.fromVector("SL:1/M:1/O:0/S:2/ED:1/EE:null/A:1/ID:1/LC:2/LI:1/LAV:1/LAC:1/FD:1/RD:1/NC:2/PV:3");
+    }
+
 }
