@@ -4,7 +4,7 @@
 
     <groupId>us.springett</groupId>
     <artifactId>owasp-risk-rating-calculator</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>OWASP Risk Rating Calculator</name>
@@ -47,7 +47,7 @@
         <connection>scm:git:git@github.com:stevespringett/owasp-risk-rating-calculator.git</connection>
         <url>https://github.com/stevespringett/owasp-risk-rating-calculator.git</url>
         <developerConnection>scm:git:git@github.com:stevespringett/owasp-risk-rating-calculator.git</developerConnection>
-        <tag>owasp-risk-rating-calculator-1.0.0</tag>
+        <tag>owasp-risk-rating-calculator-1.0.1</tag>
     </scm>
 
     <issueManagement>
