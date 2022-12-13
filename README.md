@@ -47,7 +47,7 @@ OWASP Risk Rating Calculator is available in the Maven Central Repository.
 <dependency>
     <groupId>us.springett</groupId>
     <artifactId>owasp-risk-rating-calculator</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
